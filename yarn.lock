@@ -2,7 +2,17 @@
 # yarn lockfile v1
 
 
+"@types/readline-sync@^1.4.4":
+  version "1.4.4"
+  resolved "https://registry.npmjs.org/@types/readline-sync/-/readline-sync-1.4.4.tgz"
+  integrity sha512-cFjVIoiamX7U6zkO2VPvXyTxbFDdiRo902IarJuPVxBhpDnXhwSaVE86ip+SCuyWBbEioKCkT4C88RNTxBM1Dw==
+
+readline-sync@^1.4.10:
+  version "1.4.10"
+  resolved "https://registry.npmjs.org/readline-sync/-/readline-sync-1.4.10.tgz"
+  integrity sha512-gNva8/6UAe8QYepIQH/jQ2qn91Qj0B9sYjMBBs3QOB8F2CXcKgLxQaJRP76sWVRQt+QU+8fAkCbCvjjMFu7Ycw==
+
 typescript@^5.0.4:
   version "5.0.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.0.4.tgz#b217fd20119bd61a94d4011274e0ab369058da3b"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-5.0.4.tgz"
   integrity sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==
