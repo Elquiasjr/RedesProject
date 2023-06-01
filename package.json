@@ -8,6 +8,10 @@
     "start": "tsc && node dist/main.js"
   },
   "devDependencies": {
+    "@types/readline-sync": "^1.4.4",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
   }
 }
