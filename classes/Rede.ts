@@ -9,6 +9,7 @@ export class Rede{
     private enderecoBroadcast: string;
     private enderecoUtilInicio: string;
     private enderecoUtilFim: string;
+    private static IpGlobal: IpDinamicDigits = new IpDinamicDigits(0, 0);
 
     constructor(nomeRede:string ,barramentoMascara: number, quantHosts: number){
         this.nomeRede = nomeRede;
@@ -20,6 +21,39 @@ export class Rede{
         this.enderecoUtilInicio = "";
         this.enderecoUtilFim = "";
     }
+
+    public defineIp(): void{
+
+        this.setEnderecoRede("192.168." + Rede.IpGlobal.network.toString() + "." + Rede.IpGlobal.host.toString());
+        let ipSet = Math.pow(2 ,32-this.getBarramentoMascara());
+        this.setEnderecoUtilInicio("192.168." + Rede.IpGlobal.network.toString() + "." + (Rede.IpGlobal.host + 1).toString());
+        
+        while (ipSet > 0 ){
+            if (ipSet <= 256 && (Rede.IpGlobal.host + ipSet) < 256){
+                Rede.IpGlobal.host += ipSet;
+                ipSet = 0; 
+            }
+            else if(ipSet >= 256){
+                ipSet -= 256
+                Rede.IpGlobal.network++;
+                Rede.IpGlobal.host = 0;
+            }else{
+                Rede.IpGlobal.network++;
+                Rede.IpGlobal.host = 0;
+                ipSet = 0;
+            }
+        }
+    
+        if(Rede.IpGlobal.host == 0){
+            this.setEnderecoBroadcast("192.168." + (Rede.IpGlobal.network-1).toString() + "." + (255).toString());
+            this.setEnderecoUtilFim("192.168." + (Rede.IpGlobal.network-1).toString() + "." + (254).toString());
+        }
+        else{
+            this.setEnderecoBroadcast("192.168." + Rede.IpGlobal.network.toString() + "." + (Rede.IpGlobal.host - 1).toString());
+            this.setEnderecoUtilFim("192.168." + Rede.IpGlobal.network.toString() + "." + (Rede.IpGlobal.host - 2).toString());
+        }
+    }
+    
 
     public definirMascara(): void{
         this.mascara = "255.255.";
@@ -37,6 +71,18 @@ export class Rede{
             }
         }
         this.mascara += (auxMascara.network).toString() + "." + auxMascara.host.toString();
+    }
+
+    public imprimeRede(): void{
+        console.log("\n");
+        console.log("Nome da rede: " + this.getNomeRede());
+        console.log("Quantidade de Hosts: " + this.getQuantHosts());
+        console.log("Endereço de rede: " + this.getEnderecoRede());
+        console.log("Endereço de utilização inicial: " + this.getEnderecoUtilInicio());
+        console.log("Endereço de utilização final: " + this.getEnderecoUtilFim());
+        console.log("Endereço de broadcast: " + this.getEnderecoBroadcast());
+        console.log("Máscara: " + this.getMascara());
+        console.log("Barramento da máscara: " + this.getBarramentoMascara());
     }
 
     public getMascara(): string{
