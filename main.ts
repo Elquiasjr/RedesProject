@@ -34,9 +34,7 @@ function main(): void{
         listRedes.push(new Rede(nome[i] ,bitsHost[i], hosts[i]));
     }
 
-    console.log("Buffer: " + buffer + "");
-
-    if(buffer > 65536){
+    if(buffer > 16777216){
         console.log("Quantidade de hosts inválida");
         return;
     }
